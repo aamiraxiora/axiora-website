@@ -73,7 +73,8 @@ h2{font-size:1.75rem;letter-spacing:-.01em}
 a.proj{display:block;text-decoration:none;transition:transform .15s,border-color .15s}
 a.proj:hover{transform:translateY(-3px);border-color:var(--accent)}
 .proj .thumb{border-radius:6px;margin-bottom:16px;border:1px solid var(--line);background:var(--paper);overflow:hidden}
-.proj .thumb svg{display:block;width:100%;height:auto}
+.proj .thumb svg,.proj .thumb img{display:block;width:100%;height:auto}
+.proj .thumb img{aspect-ratio:2/1;object-fit:cover;background:#fff}
 .proj .meta{font-size:.76rem;color:var(--blue);margin-bottom:6px}
 .proj .more{display:inline-block;margin-top:12px;font-weight:600;font-size:.9rem;color:var(--accent)}
 
@@ -105,7 +106,9 @@ a.proj:hover{transform:translateY(-3px);border-color:var(--accent)}
 .p-hero{padding:56px 0 40px}
 .p-hero h1{font-size:clamp(1.9rem,4.6vw,3rem)}
 .figure{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin-top:30px}
-.figure svg{display:block;width:100%;height:auto}
+.figure svg,.figure img{display:block;width:100%;height:auto}
+.figure img{border-radius:6px;background:#fff}
+.p-body .figure{margin:22px 0 6px}
 .figure figcaption{font-size:.82rem;color:var(--ink-2);margin-top:10px}
 .p-body{display:grid;grid-template-columns:1fr 320px;gap:40px;padding:50px 0}
 @media (max-width:860px){.p-body{grid-template-columns:1fr}}
