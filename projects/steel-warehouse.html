@@ -4,10 +4,37 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Steel PEB Building | Axiora</title>
-<meta name="description" content="A 40 × 91 m pre-engineered steel building with tapered portal frames, designed to IS 800 for wind and seismic loads.">
+<meta name="description" content="A 40 × 91 m pre-engineered steel building with tapered portal frames, designed to IS 800, with every connection, the cladding and the reinforced foundations detailed in a full 3D model.">
 <link rel="icon" href="../logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
+<style>
+.viewer{position:relative;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin-top:30px}
+.stage{position:relative;aspect-ratio:16/10;border-radius:6px;overflow:hidden;background:#f4f6f8}
+.stage img.poster,.stage canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.stage canvas{touch-action:none;cursor:grab}
+.stage .go{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:0;cursor:pointer;font:600 .95rem "IBM Plex Sans",sans-serif;background:var(--accent);color:#fff;padding:12px 20px;border-radius:6px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.stage .go small{display:block;font-weight:400;font-size:.75rem;opacity:.85}
+.stage .msg{position:absolute;left:12px;bottom:10px;font:500 .78rem "IBM Plex Mono",monospace;color:#4a5866;background:rgba(255,255,255,.85);padding:4px 8px;border-radius:4px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+.tools button{font:500 .8rem "IBM Plex Sans",sans-serif;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:6px 11px;border-radius:5px;cursor:pointer}
+.tools button[aria-pressed="false"]{opacity:.45}
+.tools button:disabled{opacity:.35;cursor:default}
+.tools .sep{flex:1}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.8rem;color:var(--ink-2);margin-top:10px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:22px 0 6px}
+.gallery .figure{margin:0}
+.gallery .wide{grid-column:1/-1}
+.figure video{display:block;width:100%;height:auto;border-radius:6px;background:#0d1620}
+@media (max-width:640px){.gallery{grid-template-columns:1fr}}
+.sched{width:100%;border-collapse:collapse;font-size:.86rem;margin-top:14px}
+.sched th,.sched td{text-align:left;padding:8px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.sched th{font-weight:600;color:var(--ink);background:var(--card)}
+.sched td{color:var(--ink-2)}
+.sched td:last-child,.sched th:last-child{text-align:right;white-space:nowrap;font-family:"IBM Plex Mono",monospace}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+</style>
 </head>
 <body><nav><div class="wrap">
   <a class="logo" href="../index.html"><img src="../logo.svg" alt="">AXIORA</a>
@@ -21,22 +48,88 @@
     <a class="crumb mono" href="../index.html#projects">← All projects</a>
     <div style="margin-top:18px"><span class="tag mono">Industrial · Steel PEB · IS 800</span> <span class="tag mono">Design project</span></div>
     <h1>Steel PEB Building: 40 m wide, tapered portal frames</h1>
-    <p class="lead">A 40 × 91 m pre-engineered steel building of about 3,650 m², with 12 bays of tapered portal frames. I designed the members and the main connections for wind and seismic loads, keeping the steel weight to about 36 kg/m².</p>
-    <figure class="figure"><img src="img/peb_staad_3d.jpg" alt="3D analysis model of the steel PEB building with full member sections shown" width="1055" height="719" loading="eager"><figcaption>Analysis model with full member sections: tapered rafters and columns, purlins, and roof and wall bracing.</figcaption></figure>
+    <p class="lead">A 40 × 91 m pre-engineered steel building of about 3,650 m², with 12 bays of tapered portal frames. I designed the members and every connection for wind and seismic loads, then built the complete steel model with each member in its true position and every plate, bolt and base detailed. The finished model now also carries the cladding, gates and reinforced foundations.</p>
+    <figure class="figure"><video src="media/peb_walkthrough.mp4" poster="img/peb_video_poster.jpg" width="1920" height="1080" autoplay muted loop playsinline controls preload="metadata" aria-label="Walkthrough of the detailed 3D model: the clad building, the frames under the cladding, an eave knee connection and the reinforced foundations"></video><figcaption>Walkthrough of the detailed 3D model: the clad building, the frames under the cladding, an eave knee and the reinforced foundations.</figcaption></figure>
+
+    <div class="viewer">
+      <div class="stage" id="stage">
+        <img class="poster" src="img/peb_model_overall.jpg" alt="3D steel model of the PEB building: tapered frames, purlins, bracing, base plates and pedestals" width="1400" height="875" loading="eager">
+        <button class="go" id="go" type="button">Open the 3D model<small>about 3 MB · drag to rotate, scroll to zoom</small></button>
+      </div>
+      <div class="tools" id="tools">
+        <button type="button" data-layer="purlin" aria-pressed="true" disabled>Purlins</button>
+        <button type="button" data-layer="bracing" aria-pressed="true" disabled>Bracing</button>
+        <button type="button" data-layer="concrete" aria-pressed="true" disabled>Pedestals</button>
+        <span class="sep"></span>
+        <button type="button" data-view="all" disabled>Whole building</button>
+        <button type="button" data-view="knee" disabled>Eave knee</button>
+        <button type="button" data-view="ridge" disabled>Ridge</button>
+        <button type="button" data-view="base" disabled>Base</button>
+      </div>
+      <div class="legend"><span><i style="background:#7a96b2"></i>Columns and rafters</span><span><i style="background:#d6be50"></i>Purlins</span><span><i style="background:#9660aa"></i>Bracing</span><span><i style="background:#e0602b"></i>Plates</span><span><i style="background:#282828"></i>Bolts</span><span><i style="background:#c8c8c4"></i>Pedestals</span></div>
+    </div>
   </header>
+
   <div class="p-body">
     <article>
       <h2>The challenge</h2><p>The building needed a 40 m wide covered floor, about 91 m long, with a low eave of 5 m. A wide, low building attracts high wind uplift on the roof, and every frame is repeated twelve times, so any extra steel in one frame is multiplied across the whole building.</p>
-      <h2>My approach</h2><ul><li>Set out a two-span frame (2 × 20 m) with a central column, so the rafters stay shallow and light instead of spanning the full 40 m.</li><li>Used tapered I-sections for rafters and columns: deep (up to 750 mm) where bending is highest at the eaves and the ridge, shallow where it is not.</li><li>Applied wind loads to IS 875 Part 3 (basic wind speed 33 m/s) and seismic loads to IS 1893 with a response spectrum analysis, then checked 99 load combinations.</li><li>Placed roof and wall bracing in the end and middle bays to carry wind along the length of the building into the foundations.</li><li>Checked all 361 members to IS 800:2007 (limit state). Every member passes; the highest utilisation is 0.91, on a purlin, and 0.87 on the rafters.</li><li>Designed the eave knee as a bolted extended end plate (12 × M24 grade 8.8, 25 mm plate) for the worst moment of 606 kNm, with column stiffeners at both rafter flanges. The highest bolt ratio is 0.91 including prying.</li></ul>
-      <figure class="figure"><img src="img/peb_staad_detail.jpg" alt="Close-up of the end bays showing tapered columns, rafters, purlins and X-bracing" width="1140" height="752" loading="lazy"><figcaption>End bays: tapered columns and rafters, the central column line, and X-bracing in the braced bay.</figcaption></figure>
+      <h2>My approach</h2><ul><li>Set out a two-span frame (2 × 20 m) with a central column, so the rafters stay shallow and light instead of spanning the full 40 m.</li><li>Used tapered I-sections for rafters and columns: deep (up to 750 mm) where bending is highest at the eaves and the ridge, shallow where it is not.</li><li>Applied wind loads to IS 875 Part 3 (basic wind speed 33 m/s) and seismic loads to IS 1893 with a response spectrum analysis, then checked 99 load combinations.</li><li>Placed roof and wall bracing in the end and middle bays to carry wind along the length of the building into the foundations.</li><li>Checked all 361 members to IS 800:2007 (limit state). Every member passes; the highest utilisation is 0.91, on a purlin, and 0.87 on the rafters.</li><li>Designed every connection type for the worst forces across all its locations and all 65 ultimate load combinations, then modelled each one in place.</li></ul>
+
+      <h2>From analysis lines to a real steel model</h2>
+      <p>An analysis model puts every member on its centreline, so members overlap at the joints and no plate or bolt can be placed correctly. I rebuilt the structure as a fabrication-ready model:</p>
+      <ul><li>Columns placed with their outer flange on the gridline and the rafters cut back to the column face, so the end plates sit flat on the column flange.</li><li>Rafters broken into transportable pieces at the section changes (6.67 m and 16.67 m from each eave), joined by bolted end-plate splices.</li><li>Purlins rotated to the 1:10 roof slope and seated on welded cleats; bracing angles bolted to gusset plates at both ends.</li><li>Base plates, anchor bolts, shear keys and concrete pedestals at all 51 columns.</li></ul>
+      <p>The finished model holds 51 columns, 198 rafter pieces and purlins, 60 bracing members, 656 plates and 1,634 bolts.</p>
+      <figure class="figure"><img src="img/peb_model_inside.jpg" alt="View inside the building along the frames, showing tapered columns, rafters and purlins" width="1400" height="875" loading="lazy"><figcaption>Inside the building: tapered frames at 7.67 m centres with purlins over the rafters.</figcaption></figure>
+
+      <h2>Cladding, gates and foundations</h2>
+      <p>I then took the model to fabrication level of detail (LOD 400) for the whole building, not only the frames:</p>
+      <ul><li>C-section purlins on bolted cleats with sag rods, and C-section wall girts on welded clips with bolted ends.</li><li>0.5 mm galvanised trapezoidal sheeting on the roof and walls, with ridge cap, rake and corner trims and eave gutters.</li><li>A 5 m roller-shutter gate in each gable, framed with jambs and a header girt, and a personnel door in the side wall.</li><li>51 isolated pad footings with pedestals, sized from the support reactions, with the footing mesh and pedestal cages modelled bar by bar.</li><li>A clash check of the full steel model with no clashes.</li></ul>
+      <div class="gallery">
+        <figure class="figure wide"><img src="img/peb_exterior.jpg" alt="Aerial view of the clad steel building with grey roof sheeting and a roller-shutter gate in the gable" width="1440" height="810" loading="lazy"><figcaption>The clad building: galvanised roof and wall sheeting, trims and eave gutters.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_gate.jpg" alt="Gable wall with a 5 m roller-shutter gate" width="1440" height="810" loading="lazy"><figcaption>Gable wall with the 5 m roller-shutter gate.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_frames.jpg" alt="Steel frames, purlins, girts and bracing with the cladding removed" width="1440" height="810" loading="lazy"><figcaption>Under the cladding: 13 frames, purlins, girts and bracing.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_knee.jpg" alt="Close-up of the eave knee: bolted end plate between the column and the rafter" width="1440" height="810" loading="lazy"><figcaption>Eave knee: bolted end plate and fitted stiffeners.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_footing.jpg" alt="Pad footing and pedestal with the reinforcement cage and bottom mesh shown" width="1440" height="810" loading="lazy"><figcaption>Pad footing and pedestal with the reinforcement shown.</figcaption></figure>
+      </div>
+
+      <h2>Connections</h2>
+      <p>Each connection was designed by hand to IS 800:2007, including bolt prying (cl. 10.4.7), end-plate bending, column web panel shear, stiffeners and welds. The eave knee was then checked again with a finite-element connection model, which confirmed the bolts and plates and led me to upgrade the stiffener welds to full penetration.</p>
+      <div class="gallery">
+        <figure class="figure"><img src="img/peb_conn_knee.jpg" alt="Eave knee: extended end plate with 12 bolts and column stiffeners" width="1400" height="875" loading="lazy"><figcaption>Eave knee: 25 mm extended end plate, 12 × M24 grade 8.8, stiffeners at both rafter flanges. Ratio 0.91.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_conn_ridge.jpg" alt="Ridge joint over the central column with bolted end plates" width="1400" height="875" loading="lazy"><figcaption>Ridge over the central column: 32 mm end plates, M30 grade 8.8 bolts, column cap below. Ratio 0.93.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_conn_splice.jpg" alt="Rafter splice with bolted end plates" width="1400" height="875" loading="lazy"><figcaption>Rafter splice at 6.67 m: 25 mm end plates extended on the tension side, 8 × M24. Ratio 0.86.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_conn_base.jpg" alt="Pinned column base with base plate, anchor bolts and concrete pedestal" width="1400" height="875" loading="lazy"><figcaption>Pinned base: 20 mm plate, 4 anchors near the web, shear key under the plate. Ratio 0.77.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_conn_purlin.jpg" alt="Purlin seated on a welded cleat on the rafter" width="1400" height="875" loading="lazy"><figcaption>Purlin cleat: 8 mm cleat welded to the rafter, 2 × M16 bolts. Ratio 0.34.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_model_bracing.jpg" alt="Roof bracing bay with angle bracing bolted to gusset plates" width="1400" height="875" loading="lazy"><figcaption>Roof bracing: angles bolted to 10 mm gussets with 2 × M20 at each end.</figcaption></figure>
+      </div>
+
+      <h2>Connection schedule</h2>
+      <div class="tablewrap"><table class="sched">
+        <tr><th>Connection</th><th>Governing forces (ULS)</th><th>Detail</th><th>Ratio</th></tr>
+        <tr><td>Eave knee</td><td>M 606 kNm, V 190 kN</td><td>End plate 300 × 854 × 25, 12 × M24 8.8</td><td>0.91</td></tr>
+        <tr><td>Ridge</td><td>M 747 kNm, V 210 kN</td><td>End plates 300 × 753 × 32, 10 × M30 8.8</td><td>0.93</td></tr>
+        <tr><td>Central column cap</td><td>N 371 kN</td><td>Cap 300 × 500 × 25, 4 × M24 8.8</td><td>0.38</td></tr>
+        <tr><td>Rafter splice, 6.67 m</td><td>M 239 kNm</td><td>End plates 300 × 602 × 25, 8 × M24 8.8</td><td>0.86</td></tr>
+        <tr><td>Rafter splice, 16.67 m</td><td>M 180 kNm</td><td>End plates 300 × 602 × 20, 8 × M24 8.8</td><td>0.71</td></tr>
+        <tr><td>Side column base</td><td>N 218, uplift 44, H 123 kN</td><td>Plate 300 × 500 × 20, 4 × M24, shear key</td><td>0.77</td></tr>
+        <tr><td>Central column base</td><td>N 379, uplift 40 kN</td><td>Plate 300 × 500 × 20, 4 × M24</td><td>0.27</td></tr>
+        <tr><td>Gable column base and top</td><td>N 78, H 17 kN</td><td>Plate 300 × 500 × 20, 4 × M20; 12 mm cap, 2 × M20</td><td>0.40</td></tr>
+        <tr><td>Purlin to rafter</td><td>V 37 kN</td><td>8 mm cleat, 2 × M16 8.8</td><td>0.34</td></tr>
+        <tr><td>Ridge purlins</td><td>N 48 kN, M 23 kNm</td><td>12 mm cleat, 4 × M20 8.8</td><td>0.61</td></tr>
+        <tr><td>Roof and wall bracing</td><td>N 29 kN</td><td>10 mm gusset, 2 × M20 8.8</td><td>0.16</td></tr>
+      </table></div>
+
+      <h2>Analysis</h2>
+      <figure class="figure"><img src="img/peb_staad_3d.jpg" alt="3D analysis model of the steel PEB building with full member sections shown" width="1055" height="719" loading="lazy"><figcaption>Analysis model with full member sections: tapered rafters and columns, purlins, and roof and wall bracing.</figcaption></figure>
       <figure class="figure"><img src="img/peb_frame.jpg" alt="Elevation of a typical frame: two 20 m spans, 5 m eave, 7 m ridge, pinned bases" width="1400" height="374" loading="lazy"><figcaption>Typical frame: two 20 m spans with a central column and pinned bases.</figcaption></figure>
       <figure class="figure"><img src="img/peb_utilisation.jpg" alt="Member utilisation map, all members below 1.0" width="1600" height="671" loading="lazy"><figcaption>Member check results: colour shows the utilisation ratio of each member (1.0 is the code limit).</figcaption></figure>
-      <h2>Results</h2><ul><li>Steel weight of about 133 t, or about 36 kg per m² of floor.</li><li>All members pass, with reserve in the columns (side columns 0.75, central columns 0.51).</li><li>Eave knee connection passes all IS 800 checks: bolts, end plate, column web panel, stiffeners and welds.</li><li>Support reactions issued for the foundation design.</li></ul>
-      <h2>Deliverables</h2><ul><li>Structural analysis and design report</li><li>Member schedule with tapered section sizes</li><li>Connection details and check reports</li><li>Support reactions for the foundation design</li></ul>
+
+      <h2>Results</h2><ul><li>Steel weight of about 133 t, or about 36 kg per m² of floor.</li><li>All members pass, with reserve in the columns (side columns 0.75, central columns 0.51).</li><li>All 13 connection types pass; the highest ratios are 0.93 at the ridge and 0.91 at the eave knee.</li><li>A complete 3D steel model ready for shop drawings, plus support reactions for the foundation design.</li><li>The model carries the full envelope and reinforced foundations, with no clashes in the steel.</li></ul>
+      <h2>Deliverables</h2><ul><li>Structural analysis and design report</li><li>Member schedule with tapered section sizes</li><li>Connection design calculations and schedule</li><li>Full 3D model (LOD 400): steel, cladding, gates and doors</li><li>Foundation sizes and reinforcement</li><li>Support reactions for the foundation design</li></ul>
     </article>
     <aside class="spec card">
       <h3>Project snapshot</h3>
-      <table><tr><td>Type</td><td>Pre-engineered steel building</td></tr><tr><td>Size</td><td>40 × 91 m, about 3,650 m²</td></tr><tr><td>Height</td><td>5 m eave, 7 m ridge</td></tr><tr><td>Frames</td><td>13 tapered portal frames, 12 bays</td></tr><tr><td>Steel</td><td>About 133 t (36 kg/m²)</td></tr><tr><td>Members</td><td>361 checked, all pass (max 0.91)</td></tr><tr><td>Codes</td><td>IS 800:2007, IS 875-3:2015, IS 1893:2016</td></tr><tr><td>Role</td><td>Structural analysis, member and connection design</td></tr></table>
+      <table><tr><td>Type</td><td>Pre-engineered steel building</td></tr><tr><td>Size</td><td>40 × 91 m, about 3,650 m²</td></tr><tr><td>Height</td><td>5 m eave, 7 m ridge</td></tr><tr><td>Frames</td><td>13 tapered portal frames, 12 bays</td></tr><tr><td>Steel</td><td>About 133 t (36 kg/m²)</td></tr><tr><td>Members</td><td>361 checked, all pass (max 0.91)</td></tr><tr><td>Connections</td><td>13 types, all pass (max 0.93)</td></tr><tr><td>3D model</td><td>LOD 400: steel, cladding, foundations</td></tr><tr><td>Codes</td><td>IS 800:2007, IS 875-3:2015, IS 1893:2016</td></tr><tr><td>Role</td><td>Analysis, member, connection and foundation design; 3D model</td></tr></table>
       <p class="note">Design project. Client and site details are kept confidential.</p>
       <div class="cta"><a class="btn primary" href="mailto:aamir@axioraengineering.com?subject=Project%20enquiry%3A%20Steel%20PEB%20building">Discuss a similar project</a></div>
     </aside>
@@ -48,6 +141,38 @@
 </div>
 <footer><div class="wrap mono">© <span id="y"></span> Axiora · Mohd Aamir · Abu Dhabi, UAE</div></footer>
 <script>document.getElementById("y").textContent=new Date().getFullYear()</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+const stage=document.getElementById('stage'),go=document.getElementById('go'),tools=document.getElementById('tools');
+go.addEventListener('click',async()=>{
+  go.remove();const msg=document.createElement('div');msg.className='msg';msg.textContent='Loading model…';stage.appendChild(msg);
+  try{
+    const THREE=await import('three');
+    const {GLTFLoader}=await import('three/addons/loaders/GLTFLoader.js');
+    const {OrbitControls}=await import('three/addons/controls/OrbitControls.js');
+    const R=new THREE.WebGLRenderer({antialias:true});R.setPixelRatio(Math.min(devicePixelRatio,2));R.setClearColor(0xf4f6f8);
+    stage.appendChild(R.domElement);
+    const S=new THREE.Scene();S.add(new THREE.HemisphereLight(0xffffff,0x8899aa,1.4));
+    const d=new THREE.DirectionalLight(0xffffff,1.6);d.position.set(-30,60,40);S.add(d);
+    const d2=new THREE.DirectionalLight(0xffffff,0.6);d2.position.set(40,20,-30);S.add(d2);
+    const cam=new THREE.PerspectiveCamera(35,1,0.02,2000);
+    const ctl=new OrbitControls(cam,R.domElement);ctl.enableDamping=true;ctl.dampingFactor=0.08;
+    const size=()=>{const w=stage.clientWidth,h=stage.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();};
+    new ResizeObserver(size).observe(stage);size();
+    const g=await new GLTFLoader().loadAsync('model/peb_model.glb',e=>{if(e.total)msg.textContent='Loading model… '+Math.round(100*e.loaded/e.total)+'%';});
+    S.add(g.scene);const nodes={};g.scene.traverse(o=>{if(o.isMesh)nodes[o.name]=o;});
+    const views={all:[[-55,40,-50],[20,0,38]],knee:[[3.0,4.3,-2.2],[0.1,5.3,0]],ridge:[[17.6,5.3,-2.2],[20,6.5,0]],base:[[-2.0,1.4,-2.2],[-0.1,0.2,0]]};
+    const setView=k=>{const[p,t]=views[k];cam.position.set(...p);ctl.target.set(...t);ctl.update();};
+    setView('all');stage.querySelector('img.poster').remove();msg.textContent='Drag to rotate · right-drag to pan · scroll to zoom';
+    tools.querySelectorAll('button').forEach(b=>{b.disabled=false;b.addEventListener('click',()=>{
+      if(b.dataset.view)return setView(b.dataset.view);
+      const on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);
+      for(const k in nodes)if(k.startsWith(b.dataset.layer)||(b.dataset.layer==='bracing'&&k.startsWith('gusset'))||(b.dataset.layer==='purlin'&&k.startsWith('cleat')))nodes[k].visible=on;
+    });});
+    (function loop(){requestAnimationFrame(loop);ctl.update();R.render(S,cam);})();
+  }catch(e){msg.textContent='The 3D model could not load in this browser. The images below show the model.';console.error(e);}
+});
+</script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5cf16966bf16493d90ac74882696c82b"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
