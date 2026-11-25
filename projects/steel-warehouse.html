@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Steel PEB Building | Axiora</title>
-<meta name="description" content="A 40 × 91 m pre-engineered steel building with tapered portal frames, designed to IS 800, with every connection, the cladding and the reinforced foundations detailed in a full 3D model.">
+<meta name="description" content="A 40 × 91 m pre-engineered steel building with tapered portal frames, designed to AISC 360-16, with every connection, the cladding and the reinforced foundations detailed in a full 3D model.">
 <link rel="icon" href="../logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
@@ -46,7 +46,7 @@
 <div class="wrap">
   <header class="p-hero">
     <a class="crumb mono" href="../index.html#projects">← All projects</a>
-    <div style="margin-top:18px"><span class="tag mono">Industrial · Steel PEB · IS 800</span> <span class="tag mono">Design project</span></div>
+    <div style="margin-top:18px"><span class="tag mono">Industrial · Steel PEB · AISC 360</span> <span class="tag mono">Design project</span></div>
     <h1>Steel PEB Building: 40 m wide, tapered portal frames</h1>
     <p class="lead">A 40 × 91 m pre-engineered steel building of about 3,650 m², with 12 bays of tapered portal frames. I designed the members and every connection for wind and seismic loads, then built the complete steel model with each member in its true position and every plate, bolt and base detailed. The finished model now also carries the cladding, gates and reinforced foundations.</p>
     <figure class="figure"><video src="media/peb_walkthrough.mp4" poster="img/peb_video_poster.jpg" width="1920" height="1080" autoplay muted loop playsinline controls preload="metadata" aria-label="Walkthrough of the detailed 3D model: the clad building, the frames under the cladding, an eave knee connection and the reinforced foundations"></video><figcaption>Walkthrough of the detailed 3D model: the clad building, the frames under the cladding, an eave knee and the reinforced foundations.</figcaption></figure>
@@ -74,7 +74,7 @@
   <div class="p-body">
     <article>
       <h2>The challenge</h2><p>The building needed a 40 m wide covered floor, about 91 m long, with a low eave of 5 m. A wide, low building attracts high wind uplift on the roof, and every frame is repeated twelve times, so any extra steel in one frame is multiplied across the whole building.</p>
-      <h2>My approach</h2><ul><li>Set out a two-span frame (2 × 20 m) with a central column, so the rafters stay shallow and light instead of spanning the full 40 m.</li><li>Used tapered I-sections for rafters and columns: deep (up to 750 mm) where bending is highest at the eaves and the ridge, shallow where it is not.</li><li>Applied wind loads to IS 875 Part 3 (basic wind speed 33 m/s) and seismic loads to IS 1893 with a response spectrum analysis, then checked 99 load combinations.</li><li>Placed roof and wall bracing in the end and middle bays to carry wind along the length of the building into the foundations.</li><li>Checked all 361 members to IS 800:2007 (limit state). Every member passes; the highest utilisation is 0.91, on a purlin, and 0.87 on the rafters.</li><li>Designed every connection type for the worst forces across all its locations and all 65 ultimate load combinations, then modelled each one in place.</li></ul>
+      <h2>My approach</h2><ul><li>Set out a two-span frame (2 × 20 m) with a central column, so the rafters stay shallow and light instead of spanning the full 40 m.</li><li>Used tapered I-sections for rafters and columns: deep (up to 750 mm) where bending is highest at the eaves and the ridge, shallow where it is not.</li><li>Applied wind loads to ASCE 7-16 (basic wind speed 47 m/s, exposure C) and seismic loads to ASCE 7-16 by the equivalent lateral force method, then checked 34 strength and 5 serviceability load combinations.</li><li>Placed roof and wall bracing in the end and middle bays to carry wind along the length of the building into the foundations.</li><li>Checked all 361 members to AISC 360-16 (LRFD) using the direct analysis method with P-delta. Every member passes; the highest ratio is 0.48 on the rafters and 0.42 on the side columns, so the frame sizes are set by stiffness rather than strength.</li><li>Designed every connection type for the worst forces across all its locations and all 34 strength load combinations, then modelled each one in place.</li></ul>
 
       <h2>From analysis lines to a real steel model</h2>
       <p>An analysis model puts every member on its centreline, so members overlap at the joints and no plate or bolt can be placed correctly. I rebuilt the structure as a fabrication-ready model:</p>
@@ -94,43 +94,44 @@
       </div>
 
       <h2>Connections</h2>
-      <p>Each connection was designed by hand to IS 800:2007, including bolt prying (cl. 10.4.7), end-plate bending, column web panel shear, stiffeners and welds. The eave knee was then checked again with a finite-element connection model, which confirmed the bolts and plates and led me to upgrade the stiffener welds to full penetration.</p>
+      <p>Each connection was designed by hand to AISC 360-16. The bolted end plates follow the AISC end-plate method with thick plates (no prying), with checks on bolt rupture, end-plate yielding, compression-side bolt shear and moment reversal. At the eave knee I checked column panel zone shear, sized diagonal stiffeners to carry the full panel force and specified complete-joint-penetration welds on the rafter stub flanges. Base plates, anchor rods and shear lugs were checked to AISC 360-16 and ACI 318-19.</p>
       <div class="gallery">
-        <figure class="figure"><img src="img/peb_conn_knee.jpg" alt="Eave knee: extended end plate with 12 bolts and column stiffeners" width="1400" height="875" loading="lazy"><figcaption>Eave knee: 25 mm extended end plate, 12 × M24 grade 8.8, stiffeners at both rafter flanges. Ratio 0.91.</figcaption></figure>
-        <figure class="figure"><img src="img/peb_conn_ridge.jpg" alt="Ridge joint over the central column with bolted end plates" width="1400" height="875" loading="lazy"><figcaption>Ridge over the central column: 32 mm end plates, M30 grade 8.8 bolts, column cap below. Ratio 0.93.</figcaption></figure>
-        <figure class="figure"><img src="img/peb_conn_splice.jpg" alt="Rafter splice with bolted end plates" width="1400" height="875" loading="lazy"><figcaption>Rafter splice at 6.67 m: 25 mm end plates extended on the tension side, 8 × M24. Ratio 0.86.</figcaption></figure>
-        <figure class="figure"><img src="img/peb_conn_base.jpg" alt="Pinned column base with base plate and anchor bolts on a concrete pedestal, with the pedestal and footing reinforcement shown" width="1400" height="875" loading="lazy"><figcaption>Pinned base: 20 mm plate, 4 anchors near the web, shear key under the plate. The anchor rods are cast 450 mm into the reinforced pedestal, with an end plate at the bottom and a nut on top. Ratio 0.77.</figcaption></figure>
-        <figure class="figure"><img src="img/peb_conn_purlin.jpg" alt="Purlin seated on a welded cleat on the rafter" width="1400" height="875" loading="lazy"><figcaption>Purlin cleat: stiffened cleat welded to the rafter, 2 × M16 bolts. Ratio 0.34.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_conn_knee.jpg" alt="Eave knee: rafter stub welded to the column with diagonal stiffeners, and a bolted end-plate splice" width="1400" height="875" loading="lazy"><figcaption>Eave knee: rafter stub welded to the column (CJP flanges) with diagonal panel stiffeners, and a 25 mm flush end-plate splice with 16 × M24 A325 bolts. Ratio 0.88.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_conn_ridge.jpg" alt="Ridge joint over the central column with bolted end plates" width="1400" height="875" loading="lazy"><figcaption>Ridge over the central column: 32 mm extended end plates, M30 A325 bolts, column cap below. Ratio 0.80.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_conn_splice.jpg" alt="Rafter splice with bolted end plates" width="1400" height="875" loading="lazy"><figcaption>Rafter splice: 25 mm end plates extended on the tension side, M24 A325 bolts. Ratio 0.80.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_conn_base.jpg" alt="Pinned column base with base plate and anchor bolts on a concrete pedestal, with the pedestal and footing reinforcement shown" width="1400" height="875" loading="lazy"><figcaption>Pinned base: 20 mm plate, 4 × M24 ASTM F1554 Gr 36 anchor rods near the web, 200 × 150 × 30 shear lug under the plate. The anchor rods are cast 450 mm into the reinforced pedestal, with an end plate at the bottom and a nut on top. Ratio 0.53.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_conn_purlin.jpg" alt="Purlin seated on a welded cleat on the rafter" width="1400" height="875" loading="lazy"><figcaption>Purlin cleat: stiffened cleat welded to the rafter, 2 × M16 bolts at each end. Ratio 0.17.</figcaption></figure>
         <figure class="figure"><img src="img/peb_model_bracing.jpg" alt="Roof bracing bay with angle bracing bolted to gusset plates" width="1400" height="875" loading="lazy"><figcaption>Roof bracing: angles bolted to 10 mm gussets with 2 × M20 at each end.</figcaption></figure>
       </div>
 
       <h2>Connection schedule</h2>
       <div class="tablewrap"><table class="sched">
-        <tr><th>Connection</th><th>Governing forces (ULS)</th><th>Detail</th><th>Ratio</th></tr>
-        <tr><td>Eave knee</td><td>M 606 kNm, V 190 kN</td><td>End plate 300 × 854 × 25, 12 × M24 8.8</td><td>0.91</td></tr>
-        <tr><td>Ridge</td><td>M 747 kNm, V 210 kN</td><td>End plates 300 × 753 × 32, 10 × M30 8.8</td><td>0.93</td></tr>
-        <tr><td>Central column cap</td><td>N 371 kN</td><td>Cap 300 × 500 × 25, 4 × M24 8.8</td><td>0.38</td></tr>
-        <tr><td>Rafter splice, 6.67 m</td><td>M 239 kNm</td><td>End plates 300 × 602 × 25, 8 × M24 8.8</td><td>0.86</td></tr>
-        <tr><td>Rafter splice, 16.67 m</td><td>M 180 kNm</td><td>End plates 300 × 602 × 20, 8 × M24 8.8</td><td>0.71</td></tr>
-        <tr><td>Side column base</td><td>N 218, uplift 44, H 123 kN</td><td>Plate 300 × 500 × 20, 4 × M24, shear key</td><td>0.77</td></tr>
-        <tr><td>Central column base</td><td>N 379, uplift 40 kN</td><td>Plate 300 × 500 × 20, 4 × M24</td><td>0.27</td></tr>
-        <tr><td>Gable column base and top</td><td>N 78, H 17 kN</td><td>Plate 300 × 500 × 20, 4 × M20; 12 mm cap, 2 × M20</td><td>0.40</td></tr>
-        <tr><td>Purlin to rafter</td><td>V 37 kN</td><td>8 mm cleat, 2 × M16 8.8</td><td>0.34</td></tr>
-        <tr><td>Ridge purlins</td><td>N 48 kN, M 23 kNm</td><td>12 mm cleat, 4 × M20 8.8</td><td>0.61</td></tr>
-        <tr><td>Roof and wall bracing</td><td>N 29 kN</td><td>10 mm gusset, 2 × M20 8.8</td><td>0.16</td></tr>
+        <tr><th>Connection</th><th>Governing forces (LRFD)</th><th>Detail</th><th>Ratio</th></tr>
+        <tr><td>Eave knee splice (1.30 m)</td><td>M 258 kNm</td><td>Flush end plate 25 mm, 16 × M24 A325</td><td>0.87</td></tr>
+        <tr><td>Eave knee panel</td><td>Flange force 495 kN</td><td>CJP rafter-stub flanges, diagonal stiffeners 2 × 142 × 12</td><td>0.88</td></tr>
+        <tr><td>Ridge</td><td>M 529 kNm, V 143 kN</td><td>Extended end plates 32 mm, M30 A325</td><td>0.80</td></tr>
+        <tr><td>Central column cap</td><td>N 276 kN</td><td>Cap plate, 4 × M24 A325</td><td>0.24</td></tr>
+        <tr><td>Rafter splice, 6.07 m</td><td>M 129 kNm</td><td>Extended end plates 25 mm, M24 A325</td><td>0.80</td></tr>
+        <tr><td>Rafter splice, 16.07 m</td><td>M 70 kNm</td><td>End plates 20 mm, M24 A325</td><td>0.95</td></tr>
+        <tr><td>Side column base</td><td>H 85 kN, uplift 5 kN</td><td>Plate 20 mm, 4 × M24 F1554 Gr 36, shear lug 200 × 150 × 30</td><td>0.53</td></tr>
+        <tr><td>Central column base</td><td>Bearing 1.9 MPa</td><td>Plate 20 mm, 4 × M24 F1554 Gr 36</td><td>0.23</td></tr>
+        <tr><td>Gable column base and top</td><td>H 16 kN</td><td>Plate 20 mm, 4 × M20 F1554 Gr 36; top 2 × M20</td><td>0.15</td></tr>
+        <tr><td>Purlin to rafter</td><td>V 38 kN</td><td>Cleat with bearing stiffeners, 2 × M16 A325 each end</td><td>0.17</td></tr>
+        <tr><td>Ridge purlins</td><td>Bolt force 36 kN</td><td>4 × M20 A325 each end</td><td>0.41</td></tr>
+        <tr><td>Roof and wall bracing</td><td>N 18 kN</td><td>10 mm gusset, 2 × M20 A325</td><td>0.10</td></tr>
       </table></div>
 
       <h2>Analysis</h2>
       <figure class="figure"><img src="img/peb_staad_3d.jpg" alt="3D analysis model of the steel PEB building with full member sections shown" width="1055" height="719" loading="lazy"><figcaption>Analysis model with full member sections: tapered rafters and columns, purlins, and roof and wall bracing.</figcaption></figure>
       <figure class="figure"><img src="img/peb_frame.jpg" alt="Elevation of a typical frame: two 20 m spans, 5 m eave, 7 m ridge, pinned bases" width="1400" height="374" loading="lazy"><figcaption>Typical frame: two 20 m spans with a central column and pinned bases.</figcaption></figure>
-      <figure class="figure"><img src="img/peb_utilisation.jpg" alt="Member utilisation map, all members below 1.0" width="1600" height="671" loading="lazy"><figcaption>Member check results: colour shows the utilisation ratio of each member (1.0 is the code limit).</figcaption></figure>
+      <figure class="figure"><img src="img/peb_utilisation.jpg?v=2" alt="AISC 360-16 member check map, all members below 1.0" width="1600" height="671" loading="lazy"><figcaption>Member check results: colour shows the utilisation ratio of each member (1.0 is the code limit).</figcaption></figure>
 
-      <h2>Results</h2><ul><li>Steel weight of about 133 t, or about 36 kg per m² of floor.</li><li>All members pass, with reserve in the columns (side columns 0.75, central columns 0.51).</li><li>All 13 connection types pass; the highest ratios are 0.93 at the ridge and 0.91 at the eave knee.</li><li>A complete 3D steel model ready for shop drawings, plus support reactions for the foundation design.</li><li>The model carries the full envelope and reinforced foundations, with no clashes in the steel.</li></ul>
+      <h2>Results</h2><ul><li>Steel weight of about 142 t, or about 39 kg per m² of floor.</li><li>All members pass with reserve (rafters 0.48, side columns 0.42, central columns 0.16). Under service loads the rafters deflect about 31 mm (span/640) and the eaves sway less than 2 mm.</li><li>All 15 connection types pass; the highest ratios are 0.95 at the rafter splice and 0.88 at the eave knee.</li><li>A complete 3D steel model ready for shop drawings, plus support reactions for the foundation design.</li><li>The model carries the full envelope and reinforced foundations, with no clashes in the steel.</li></ul>
       <h2>Deliverables</h2><ul><li>Structural analysis and design report</li><li>Member schedule with tapered section sizes</li><li>Connection design calculations and schedule</li><li>Full 3D model (LOD 400): steel, cladding, gates and doors</li><li>Foundation sizes and reinforcement</li><li>Support reactions for the foundation design</li></ul>
     </article>
     <aside class="spec card">
       <h3>Project snapshot</h3>
-      <table><tr><td>Type</td><td>Pre-engineered steel building</td></tr><tr><td>Size</td><td>40 × 91 m, about 3,650 m²</td></tr><tr><td>Height</td><td>5 m eave, 7 m ridge</td></tr><tr><td>Frames</td><td>13 tapered portal frames, 12 bays</td></tr><tr><td>Steel</td><td>About 133 t (36 kg/m²)</td></tr><tr><td>Members</td><td>361 checked, all pass (max 0.91)</td></tr><tr><td>Connections</td><td>13 types, all pass (max 0.93)</td></tr><tr><td>3D model</td><td>LOD 400: steel, cladding, foundations</td></tr><tr><td>Codes</td><td>IS 800:2007, IS 875-3:2015, IS 1893:2016</td></tr><tr><td>Role</td><td>Analysis, member, connection and foundation design; 3D model</td></tr></table>
+      <table><tr><td>Type</td><td>Pre-engineered steel building</td></tr><tr><td>Size</td><td>40 × 91 m, about 3,650 m²</td></tr><tr><td>Height</td><td>5 m eave, 7 m ridge</td></tr><tr><td>Frames</td><td>13 tapered portal frames, 12 bays</td></tr><tr><td>Steel</td><td>About 142 t (39 kg/m²)</td></tr><tr><td>Members</td><td>361 checked, all pass (max 0.48)</td></tr><tr><td>Connections</td><td>15 types, all pass (max 0.95)</td></tr><tr><td>3D model</td><td>LOD 400: steel, cladding, foundations</td></tr><tr><td>Codes</td><td>AISC 360-16 (LRFD), ASCE 7-16, ACI 318-19</td></tr><tr><td>Role</td><td>Analysis, member, connection and foundation design; 3D model</td></tr></table>
       <p class="note">Design project. Client and site details are kept confidential.</p>
       <div class="cta"><a class="btn primary" href="mailto:aamir@axioraengineering.com?subject=Project%20enquiry%3A%20Steel%20PEB%20building">Discuss a similar project</a></div>
     </aside>
