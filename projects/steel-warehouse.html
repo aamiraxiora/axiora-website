@@ -49,25 +49,27 @@
     <div style="margin-top:18px"><span class="tag mono">Industrial · Steel PEB · AISC 360</span> <span class="tag mono">Design project</span></div>
     <h1>Steel PEB Building: 40 m wide, tapered portal frames</h1>
     <p class="lead">A 40 × 91 m pre-engineered steel building of about 3,650 m², with 12 bays of tapered portal frames. We designed the members and every connection for wind and seismic loads, then built the complete steel model with each member in its true position and every plate, bolt and base detailed. The finished model now also carries the cladding, gates and reinforced foundations.</p>
-    <figure class="figure"><video src="media/peb_walkthrough.mp4" poster="img/peb_video_poster.jpg" width="1920" height="1080" autoplay muted loop playsinline controls preload="metadata" aria-label="Walkthrough of the detailed 3D model: the clad building, the frames under the cladding, an eave knee connection and the reinforced foundations"></video><figcaption>Walkthrough of the detailed 3D model: the clad building, the frames under the cladding, an eave knee and the reinforced foundations.</figcaption></figure>
+    <figure class="figure"><video src="media/peb_walkthrough.mp4?v=2" poster="img/peb_video_poster.jpg" width="1920" height="1080" autoplay muted loop playsinline controls preload="metadata" aria-label="Walkthrough of the detailed 3D model: the clad building, the frames under the cladding, an eave knee connection and the reinforced foundations"></video><figcaption>Walkthrough of the detailed 3D model: the clad building, the frames under the cladding, an eave knee and the reinforced foundations, with the pedestal ties running down into the footings.</figcaption></figure>
 
     <div class="viewer">
       <div class="stage" id="stage">
         <img class="poster" src="img/peb_model_overall.jpg" alt="3D model of the PEB building: tapered frames, purlins, girts, bracing and footings" width="1400" height="875" loading="eager">
-        <button class="go" id="go" type="button">Open the 3D model<small>about 2.6 MB · drag to rotate, scroll to zoom</small></button>
+        <button class="go" id="go" type="button">Open the 3D model<small>about 2.7 MB · drag to rotate, scroll to zoom</small></button>
       </div>
       <div class="tools" id="tools">
         <button type="button" data-layer="cladding" aria-pressed="false" disabled>Cladding</button>
         <button type="button" data-layer="purlin" aria-pressed="true" disabled>Purlins &amp; girts</button>
         <button type="button" data-layer="bracing" aria-pressed="true" disabled>Bracing</button>
         <button type="button" data-layer="concrete" aria-pressed="true" disabled>Footings</button>
+        <button type="button" data-layer="rebar" aria-pressed="false" disabled>Reinforcement</button>
         <span class="sep"></span>
         <button type="button" data-view="all" disabled>Whole building</button>
         <button type="button" data-view="knee" disabled>Eave knee</button>
         <button type="button" data-view="ridge" disabled>Ridge</button>
         <button type="button" data-view="base" disabled>Base</button>
+        <button type="button" data-view="gable" disabled>Gable purlin</button>
       </div>
-      <div class="legend"><span><i style="background:#b23a2c"></i>Columns and rafters</span><span><i style="background:#d0563a"></i>Plates</span><span><i style="background:#a9b2b8"></i>Purlins and girts</span><span><i style="background:#4a4f55"></i>Bracing</span><span><i style="background:#2b2d30"></i>Bolts</span><span><i style="background:#c8c4bb"></i>Footings</span><span><i style="background:#dfe3e6"></i>Cladding</span></div>
+      <div class="legend"><span><i style="background:#b23a2c"></i>Columns and rafters</span><span><i style="background:#d0563a"></i>Plates</span><span><i style="background:#a9b2b8"></i>Purlins and girts</span><span><i style="background:#4a4f55"></i>Bracing</span><span><i style="background:#2b2d30"></i>Bolts</span><span><i style="background:#c8c4bb"></i>Footings</span><span><i style="background:#8a4b2a"></i>Reinforcement</span><span><i style="background:#dfe3e6"></i>Cladding</span></div>
     </div>
   </header>
 
@@ -90,33 +92,36 @@
         <figure class="figure"><img src="img/peb_gate.jpg" alt="Gable wall with a 5 m roller-shutter gate" width="1440" height="810" loading="lazy"><figcaption>Gable wall with the 5 m roller-shutter gate.</figcaption></figure>
         <figure class="figure"><img src="img/peb_frames.jpg" alt="Steel frames, purlins, girts and bracing with the cladding removed" width="1440" height="810" loading="lazy"><figcaption>Under the cladding: 13 frames, purlins, girts and bracing.</figcaption></figure>
         <figure class="figure"><img src="img/peb_knee.jpg" alt="Close-up of the eave knee: bolted end plate between the column and the rafter" width="1440" height="810" loading="lazy"><figcaption>Eave knee: bolted end plate and fitted stiffeners.</figcaption></figure>
-        <figure class="figure"><img src="img/peb_footing.jpg" alt="Pad footing and pedestal with the reinforcement cage and bottom mesh shown" width="1440" height="810" loading="lazy"><figcaption>Pad footing and pedestal with the reinforcement shown.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_footing.jpg" alt="Pad footing and pedestal with the reinforcement cage and bottom mesh shown" width="1440" height="810" loading="lazy"><figcaption>Pad footing and pedestal: the pedestal ties run down through the footing to the bottom mesh.</figcaption></figure>
       </div>
 
       <h2>Connections</h2>
-      <p>Each connection was designed by hand to AISC 360-16. The bolted end plates follow the AISC end-plate method with thick plates (no prying), with checks on bolt rupture, end-plate yielding, compression-side bolt shear and moment reversal. At the eave knee we checked column panel zone shear, sized diagonal stiffeners to carry the full panel force and specified complete-joint-penetration welds on the rafter stub flanges. Base plates, anchor rods and shear lugs were checked to AISC 360-16 and ACI 318-19.</p>
+      <p>We designed each connection to AISC 360-16 (LRFD) and then checked every one in a component-based finite element model (CBFEM): the plates, welds, bolts and anchors are modelled as they will be built and loaded with the worst forces from all 34 strength load combinations. Bolts and welds are checked to AISC 360-16, plates against a 5% plastic strain limit, and anchor rods, concrete and shear lugs to ACI 318-19.</p>
+      <p>The finite element checks led to four changes in the steel model:</p>
+      <ul><li>The shear lugs at the side columns now run across the frame, so they bear against the concrete in the direction of the 84 kN frame shear.</li><li>The splice end plates stand 10 mm proud of the flush flange, so the sloped flange is fully cut and welded to the plate.</li><li>The purlin cleats on the two gable frames have 4 bolts instead of 2. Two columns of bolts let the joint resist rotation on its own.</li><li>The pedestal ties continue down through the footing to just above the bottom mesh, holding the starter bars in place.</li></ul>
       <div class="gallery">
-        <figure class="figure"><img src="img/peb_conn_knee.jpg" alt="Eave knee: rafter stub welded to the column with diagonal stiffeners, and a bolted end-plate splice" width="1400" height="875" loading="lazy"><figcaption>Eave knee: rafter stub welded to the column (CJP flanges) with diagonal panel stiffeners, and a 25 mm flush end-plate splice with 16 × M24 A325 bolts. Ratio 0.88.</figcaption></figure>
-        <figure class="figure"><img src="img/peb_conn_ridge.jpg" alt="Ridge joint over the central column with bolted end plates" width="1400" height="875" loading="lazy"><figcaption>Ridge over the central column: 32 mm extended end plates, M30 A325 bolts, column cap below. Ratio 0.80.</figcaption></figure>
-        <figure class="figure"><img src="img/peb_conn_splice.jpg" alt="Rafter splice with bolted end plates" width="1400" height="875" loading="lazy"><figcaption>Rafter splice: 25 mm end plates extended on the tension side, M24 A325 bolts. Ratio 0.80.</figcaption></figure>
-        <figure class="figure"><img src="img/peb_conn_base.jpg" alt="Pinned column base with base plate and anchor bolts on a concrete pedestal, with the pedestal and footing reinforcement shown" width="1400" height="875" loading="lazy"><figcaption>Pinned base: 20 mm plate, 4 × M24 ASTM F1554 Gr 36 anchor rods near the web, 200 × 150 × 30 shear lug under the plate. The anchor rods are cast 450 mm into the reinforced pedestal, with an end plate at the bottom and a nut on top. Ratio 0.53.</figcaption></figure>
-        <figure class="figure"><img src="img/peb_conn_purlin.jpg" alt="Purlin seated on a welded cleat on the rafter" width="1400" height="875" loading="lazy"><figcaption>Purlin cleat: stiffened cleat welded to the rafter, 2 × M16 bolts at each end. Ratio 0.17.</figcaption></figure>
-        <figure class="figure"><img src="img/peb_model_bracing.jpg" alt="Roof bracing bay with angle bracing bolted to gusset plates" width="1400" height="875" loading="lazy"><figcaption>Roof bracing: angles bolted to 10 mm gussets with 2 × M20 at each end.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_conn_knee.jpg" alt="Eave knee: rafter stub welded to the column with diagonal stiffeners, and a bolted end-plate splice" width="1400" height="875" loading="lazy"><figcaption>Eave knee: 25 mm rafter end plate at the column face with 12 × M24 A325 bolts, knee stiffeners and a diagonal stiffener pair in the panel. Bolts 0.80, welds 0.61, no plastic strain.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_conn_ridge.jpg" alt="Ridge joint over the central column with bolted end plates" width="1400" height="875" loading="lazy"><figcaption>Ridge over the central column: 32 mm extended end plates with 10 × M30 A325 bolts, and sloped 25 mm caps bolted to the rafters with 2 × M24 each side. Bolts 0.68, welds 0.21.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_conn_splice.jpg" alt="Rafter splice with bolted end plates" width="1400" height="875" loading="lazy"><figcaption>Rafter splice at 6.07 m: 25 mm end plates extended on the tension side, 8 × M24 A325 bolts, full-strength flange welds and 10 mm web fillets. Bolts 0.35, welds 0.36.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_conn_base.jpg" alt="Pinned column base with base plate and anchor bolts on a concrete pedestal, with the pedestal and footing reinforcement shown" width="1400" height="875" loading="lazy"><figcaption>Pinned side-column base: 20 mm plate, 4 × 25 mm ASTM F1554 Gr 36 anchor rods cast 450 mm into the pedestal, and a 200 × 150 × 30 shear lug across the frame. The pedestal ties continue into the footing. Ratio 0.75 (lug weld); anchor rods 0.27.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_conn_purlin.jpg" alt="Purlin seated on a welded cleat on the rafter" width="1400" height="875" loading="lazy"><figcaption>Purlin cleat on an interior frame: stiffened 10 mm cleat welded to the rafter, 2 × M16 A325 at each purlin end. Bolts 0.41, welds 0.28.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_conn_purlin_gable.jpg" alt="Gable-end purlin bolted to a stiffened cleat with four bolts" width="1400" height="875" loading="lazy"><figcaption>Purlin cleat on a gable frame: the end purlin runs across the whole cleat with 4 × M16 A325. Bolts 0.18, welds 0.39, including the down-slope and strut forces.</figcaption></figure>
+        <figure class="figure"><img src="img/peb_model_bracing.jpg" alt="Roof bracing bay with angle bracing bolted to gusset plates" width="1400" height="875" loading="lazy"><figcaption>Roof bracing: angles bolted to 10 mm gussets with 2 × M20 at each end. Ratio 0.10.</figcaption></figure>
       </div>
 
       <h2>Connection schedule</h2>
       <div class="tablewrap"><table class="sched">
         <tr><th>Connection</th><th>Governing forces (LRFD)</th><th>Detail</th><th>Ratio</th></tr>
-        <tr><td>Eave knee splice (1.30 m)</td><td>M 258 kNm</td><td>Flush end plate 25 mm, 16 × M24 A325</td><td>0.87</td></tr>
-        <tr><td>Eave knee panel</td><td>Flange force 495 kN</td><td>CJP rafter-stub flanges, diagonal stiffeners 2 × 142 × 12</td><td>0.88</td></tr>
-        <tr><td>Ridge</td><td>M 529 kNm, V 143 kN</td><td>Extended end plates 32 mm, M30 A325</td><td>0.80</td></tr>
-        <tr><td>Central column cap</td><td>N 276 kN</td><td>Cap plate, 4 × M24 A325</td><td>0.24</td></tr>
-        <tr><td>Rafter splice, 6.07 m</td><td>M 129 kNm</td><td>Extended end plates 25 mm, M24 A325</td><td>0.80</td></tr>
-        <tr><td>Rafter splice, 16.07 m</td><td>M 70 kNm</td><td>End plates 20 mm, M24 A325</td><td>0.95</td></tr>
-        <tr><td>Side column base</td><td>H 85 kN, uplift 5 kN</td><td>Plate 20 mm, 4 × M24 F1554 Gr 36, shear lug 200 × 150 × 30</td><td>0.53</td></tr>
-        <tr><td>Central column base</td><td>Bearing 1.9 MPa</td><td>Plate 20 mm, 4 × M24 F1554 Gr 36</td><td>0.23</td></tr>
-        <tr><td>Gable column base and top</td><td>H 16 kN</td><td>Plate 20 mm, 4 × M20 F1554 Gr 36; top 2 × M20</td><td>0.15</td></tr>
-        <tr><td>Purlin to rafter</td><td>V 38 kN</td><td>Cleat with bearing stiffeners, 2 × M16 A325 each end</td><td>0.17</td></tr>
+        <tr><td>Eave knee</td><td>M 410 kNm</td><td>End plate 25 mm at the column face, 12 × M24 A325, panel stiffeners</td><td>0.80</td></tr>
+        <tr><td>Ridge and column cap</td><td>M 529 kNm, N 276 kN</td><td>Extended end plates 32 mm, 10 × M30 A325; caps 25 mm, 2 × M24 each side</td><td>0.68</td></tr>
+        <tr><td>Rafter splice, 6.07 m</td><td>M 126 kNm</td><td>Extended end plates 25 mm, 8 × M24 A325</td><td>0.36</td></tr>
+        <tr><td>Rafter splice, 16.07 m</td><td>M 70 kNm</td><td>Extended end plates 20 mm, 8 × M24 A325</td><td>0.24</td></tr>
+        <tr><td>Side column base</td><td>H 84 kN, N 144 kN, uplift 19 kN</td><td>Plate 20 mm, 4 × 25 mm F1554 Gr 36, shear lug 200 × 150 × 30 across the frame</td><td>0.75</td></tr>
+        <tr><td>Central column base</td><td>N 284 kN, no uplift</td><td>Plate 500 × 300 × 20, 4 × 25 mm F1554 Gr 36</td><td>0.10</td></tr>
+        <tr><td>Gable column base</td><td>H 18 kN, uplift 4 kN</td><td>Plate 300 × 500 × 20, 4 × 19 mm F1554 Gr 36, shear on the rods</td><td>0.65</td></tr>
+        <tr><td>Gable column top</td><td>H 16 kN</td><td>2 × M20 A325</td><td>0.15</td></tr>
+        <tr><td>Purlin to rafter, interior</td><td>31 kN down, 19 kN up per end</td><td>Cleat 10 mm with stiffener, 2 × M16 A325 each end</td><td>0.41</td></tr>
+        <tr><td>Purlin to rafter, gable end</td><td>30 kN, strut 15 kN</td><td>Cleat 10 mm with stiffener, 4 × M16 A325</td><td>0.39</td></tr>
         <tr><td>Ridge purlins</td><td>Bolt force 36 kN</td><td>4 × M20 A325 each end</td><td>0.41</td></tr>
         <tr><td>Roof and wall bracing</td><td>N 18 kN</td><td>10 mm gusset, 2 × M20 A325</td><td>0.10</td></tr>
       </table></div>
@@ -126,12 +131,12 @@
       <figure class="figure"><img src="img/peb_frame.jpg" alt="Elevation of a typical frame: two 20 m spans, 5 m eave, 7 m ridge, pinned bases" width="1400" height="374" loading="lazy"><figcaption>Typical frame: two 20 m spans with a central column and pinned bases.</figcaption></figure>
       <figure class="figure"><img src="img/peb_utilisation.jpg?v=2" alt="AISC 360-16 member check map, all members below 1.0" width="1600" height="671" loading="lazy"><figcaption>Member check results: colour shows the utilisation ratio of each member (1.0 is the code limit).</figcaption></figure>
 
-      <h2>Results</h2><ul><li>Steel weight of about 142 t, or about 39 kg per m² of floor.</li><li>All members pass with reserve (rafters 0.48, side columns 0.42, central columns 0.16). Under service loads the rafters deflect about 31 mm (span/640) and the eaves sway less than 2 mm.</li><li>All 15 connection types pass; the highest ratios are 0.95 at the rafter splice and 0.88 at the eave knee.</li><li>A complete 3D steel model ready for shop drawings, plus support reactions for the foundation design.</li><li>The model carries the full envelope and reinforced foundations, with no clashes in the steel.</li></ul>
+      <h2>Results</h2><ul><li>Steel weight of about 142 t, or about 39 kg per m² of floor.</li><li>All members pass with reserve (rafters 0.48, side columns 0.42, central columns 0.16). Under service loads the rafters deflect about 31 mm (span/640) and the eaves sway less than 2 mm.</li><li>Every connection passes the finite element check; the highest ratios are 0.80 for the eave knee bolts and 0.75 for the side-column shear lug weld.</li><li>A complete 3D steel model ready for shop drawings, plus support reactions for the foundation design.</li><li>The model carries the full envelope and reinforced foundations, with no clashes in the steel.</li></ul>
       <h2>Deliverables</h2><ul><li>Structural analysis and design report</li><li>Member schedule with tapered section sizes</li><li>Connection design calculations and schedule</li><li>Full 3D model (LOD 400): steel, cladding, gates and doors</li><li>Foundation sizes and reinforcement</li><li>Support reactions for the foundation design</li></ul>
     </article>
     <aside class="spec card">
       <h3>Project snapshot</h3>
-      <table><tr><td>Type</td><td>Pre-engineered steel building</td></tr><tr><td>Size</td><td>40 × 91 m, about 3,650 m²</td></tr><tr><td>Height</td><td>5 m eave, 7 m ridge</td></tr><tr><td>Frames</td><td>13 tapered portal frames, 12 bays</td></tr><tr><td>Steel</td><td>About 142 t (39 kg/m²)</td></tr><tr><td>Members</td><td>361 checked, all pass (max 0.48)</td></tr><tr><td>Connections</td><td>15 types, all pass (max 0.95)</td></tr><tr><td>3D model</td><td>LOD 400: steel, cladding, foundations</td></tr><tr><td>Codes</td><td>AISC 360-16 (LRFD), ASCE 7-16, ACI 318-19</td></tr><tr><td>Role</td><td>Analysis, member, connection and foundation design; 3D model</td></tr></table>
+      <table><tr><td>Type</td><td>Pre-engineered steel building</td></tr><tr><td>Size</td><td>40 × 91 m, about 3,650 m²</td></tr><tr><td>Height</td><td>5 m eave, 7 m ridge</td></tr><tr><td>Frames</td><td>13 tapered portal frames, 12 bays</td></tr><tr><td>Steel</td><td>About 142 t (39 kg/m²)</td></tr><tr><td>Members</td><td>361 checked, all pass (max 0.48)</td></tr><tr><td>Connections</td><td>All pass, finite element checked (max 0.80)</td></tr><tr><td>3D model</td><td>LOD 400: steel, cladding, foundations</td></tr><tr><td>Codes</td><td>AISC 360-16 (LRFD), ASCE 7-16, ACI 318-19</td></tr><tr><td>Role</td><td>Analysis, member, connection and foundation design; 3D model</td></tr></table>
       <p class="note">Design project. Client and site details are kept confidential.</p>
       <div class="cta"><a class="btn primary" href="mailto:aamir@axioraengineering.com?subject=Project%20enquiry%3A%20Steel%20PEB%20building">Discuss a similar project</a></div>
     </aside>
@@ -162,13 +167,15 @@ go.addEventListener('click',async()=>{
     const ctl=new OrbitControls(cam,R.domElement);ctl.enableDamping=true;ctl.dampingFactor=0.08;
     const size=()=>{const w=stage.clientWidth,h=stage.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();};
     new ResizeObserver(size).observe(stage);size();
-    const g=await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync('model/peb_model.glb?v=3',e=>{if(e.total)msg.textContent='Loading model… '+Math.round(100*e.loaded/e.total)+'%';});
+    const g=await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync('model/peb_model.glb?v=4',e=>{if(e.total)msg.textContent='Loading model… '+Math.round(100*e.loaded/e.total)+'%';});
     S.add(g.scene);const nodes={};const L=['frame','plate','purlin','cleat','bracing','gusset','bolt','concrete','cladding'];g.scene.traverse(o=>{if(o.isMesh){let n=o,k=o.uuid;while(n){if(L.includes(n.name)){k=n.name;break;}n=n.parent;}nodes[k]=o;}});if(nodes.cladding)nodes.cladding.visible=false;
-    const views={all:[[-55,40,-50],[20,0,38]],knee:[[3.0,4.3,-2.2],[0.1,5.3,0]],ridge:[[17.6,5.3,-2.2],[20,6.5,0]],base:[[-2.0,1.4,-2.2],[-0.1,0.2,0]]};
+    const views={all:[[-55,40,-50],[20,0,38]],knee:[[3.0,4.3,-2.2],[0.1,5.3,0]],gable:[[8.8,7.45,-5.25],[6.67,6.0,-7.24]],ridge:[[17.6,5.3,-2.2],[20,6.5,0]],base:[[-2.0,1.4,-2.2],[-0.1,0.2,0]]};
     const setView=k=>{const[p,t]=views[k];cam.position.set(...p);ctl.target.set(...t);ctl.update();};
     setView('all');stage.querySelector('img.poster').remove();msg.textContent='Drag to rotate · right-drag to pan · scroll to zoom';
     tools.querySelectorAll('button').forEach(b=>{b.disabled=false;b.addEventListener('click',()=>{
       if(b.dataset.view)return setView(b.dataset.view);
+      if(b.dataset.layer==='rebar'&&!nodes.rebar){b.disabled=true;b.textContent='Loading…';
+        new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync('model/peb_rebar.glb?v=1').then(r=>{S.add(r.scene);nodes.rebar=r.scene;b.disabled=false;b.textContent='Reinforcement';b.setAttribute('aria-pressed','true');}).catch(()=>{b.disabled=false;b.textContent='Reinforcement';});return;}
       const on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);
       for(const k in nodes)if(k.startsWith(b.dataset.layer)||(b.dataset.layer==='bracing'&&k.startsWith('gusset'))||(b.dataset.layer==='purlin'&&k.startsWith('cleat')))nodes[k].visible=on;
     });});
