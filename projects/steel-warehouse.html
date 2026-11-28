@@ -38,7 +38,7 @@
 .conns{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:12px 0 6px}
 .conn{display:flex;flex-direction:column;align-items:stretch;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 8px 10px;cursor:pointer;font:inherit;color:var(--ink);transition:border-color .15s,transform .15s}
 .conn:hover,.conn:focus-visible{border-color:var(--accent);transform:translateY(-2px)}
-.conn img{width:100%;height:auto;border-radius:5px;background:#f4f5f6}
+.conn img{width:100%;height:auto;border-radius:5px;background:#eceff2}
 .conn .ct{font-weight:600;font-size:.9rem;margin-top:8px}
 .conn .cd{font-size:.78rem;color:var(--ink-2)}
 .conn .cr{font:500 .74rem "IBM Plex Mono",monospace;color:var(--blue);margin-top:4px}
@@ -48,7 +48,7 @@
 .cv-head h3{margin:0;font-size:1.05rem}
 .cv-x{border:0;background:none;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--ink-2)}
 .cv-body{display:grid;grid-template-columns:1.7fr 1fr;gap:0}
-.cv-stage{position:relative;aspect-ratio:4/3;background:#f4f5f6;touch-action:none}
+.cv-stage{position:relative;aspect-ratio:4/3;background:#eceff2;touch-action:none}
 .cv-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
 .cv-msg{position:absolute;left:12px;bottom:10px;font:500 .76rem "IBM Plex Mono",monospace;color:#4a5866;background:rgba(255,255,255,.85);padding:4px 8px;border-radius:4px}
 .cv-info{padding:16px 18px;font-size:.88rem;overflow:auto}
@@ -126,16 +126,16 @@
       <ul><li>The shear lugs at the side columns now run across the frame, so they bear against the concrete in the direction of the 84 kN frame shear.</li><li>The splice end plates stand 10 mm proud of the flush flange, so the sloped flange is fully cut and welded to the plate.</li><li>The purlin cleats on the two gable frames have 4 bolts instead of 2. Two columns of bolts let the joint resist rotation on its own.</li><li>The pedestal ties continue down through the footing to just above the bottom mesh, holding the starter bars in place.</li></ul>
       <p class="hint">Select a connection to open it in 3D. Drag to rotate, scroll or pinch to zoom.</p>
       <div class="conns" id="conns">
-        <button type="button" class="conn" data-k="knee"><img src="img/conn/knee.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Eave knee</span><span class="cd">Bolted end plate, 12 × M24</span><span class="cr">Max ratio 0.80</span></button>
-        <button type="button" class="conn" data-k="ridge"><img src="img/conn/ridge.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Ridge and column cap</span><span class="cd">Extended end plates, 10 × M30</span><span class="cr">Max ratio 0.68</span></button>
-        <button type="button" class="conn" data-k="splice607"><img src="img/conn/splice607.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Rafter splice at 6.07 m</span><span class="cd">Extended end plates, 8 × M24</span><span class="cr">Max ratio 0.36</span></button>
-        <button type="button" class="conn" data-k="splice1607"><img src="img/conn/splice1607.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Rafter splice at 16.07 m</span><span class="cd">Extended end plates, 8 × M24</span><span class="cr">Max ratio 0.24</span></button>
-        <button type="button" class="conn" data-k="base_side"><img src="img/conn/base_side.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Side column base</span><span class="cd">Shear lug across the frame</span><span class="cr">Max ratio 0.75</span></button>
-        <button type="button" class="conn" data-k="base_central"><img src="img/conn/base_central.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Central column base</span><span class="cd">4 anchor rods, no uplift</span><span class="cr">Max ratio 0.10</span></button>
-        <button type="button" class="conn" data-k="base_gable"><img src="img/conn/base_gable.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Gable column base</span><span class="cd">Shear on the anchor rods</span><span class="cr">Max ratio 0.65</span></button>
-        <button type="button" class="conn" data-k="purlin"><img src="img/conn/purlin.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Purlin cleat, interior</span><span class="cd">Stiffened cleat, 2 × M16</span><span class="cr">Max ratio 0.41</span></button>
-        <button type="button" class="conn" data-k="purlin_gable"><img src="img/conn/purlin_gable.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Purlin cleat, gable end</span><span class="cd">Stiffened cleat, 4 × M16</span><span class="cr">Max ratio 0.39</span></button>
-        <button type="button" class="conn" data-k="bracing"><img src="img/conn/bracing.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Roof bracing</span><span class="cd">10 mm gusset, 2 × M20</span><span class="cr">Max ratio 0.10</span></button>
+        <button type="button" class="conn" data-k="knee"><img src="img/conn/knee.jpg?v=2" alt="" width="560" height="405" loading="lazy"><span class="ct">Eave knee</span><span class="cd">Bolted end plate, 12 × M24</span><span class="cr">Max ratio 0.80</span></button>
+        <button type="button" class="conn" data-k="ridge"><img src="img/conn/ridge.jpg?v=2" alt="" width="560" height="405" loading="lazy"><span class="ct">Ridge and column cap</span><span class="cd">Extended end plates, 10 × M30</span><span class="cr">Max ratio 0.68</span></button>
+        <button type="button" class="conn" data-k="splice607"><img src="img/conn/splice607.jpg?v=2" alt="" width="560" height="405" loading="lazy"><span class="ct">Rafter splice at 6.07 m</span><span class="cd">Extended end plates, 8 × M24</span><span class="cr">Max ratio 0.36</span></button>
+        <button type="button" class="conn" data-k="splice1607"><img src="img/conn/splice1607.jpg?v=2" alt="" width="560" height="405" loading="lazy"><span class="ct">Rafter splice at 16.07 m</span><span class="cd">Extended end plates, 8 × M24</span><span class="cr">Max ratio 0.24</span></button>
+        <button type="button" class="conn" data-k="base_side"><img src="img/conn/base_side.jpg?v=2" alt="" width="560" height="405" loading="lazy"><span class="ct">Side column base</span><span class="cd">Shear lug across the frame</span><span class="cr">Max ratio 0.75</span></button>
+        <button type="button" class="conn" data-k="base_central"><img src="img/conn/base_central.jpg?v=2" alt="" width="560" height="405" loading="lazy"><span class="ct">Central column base</span><span class="cd">4 anchor rods, no uplift</span><span class="cr">Max ratio 0.10</span></button>
+        <button type="button" class="conn" data-k="base_gable"><img src="img/conn/base_gable.jpg?v=2" alt="" width="560" height="405" loading="lazy"><span class="ct">Gable column base</span><span class="cd">Shear on the anchor rods</span><span class="cr">Max ratio 0.65</span></button>
+        <button type="button" class="conn" data-k="purlin"><img src="img/conn/purlin.jpg?v=2" alt="" width="560" height="405" loading="lazy"><span class="ct">Purlin cleat, interior</span><span class="cd">Stiffened cleat, 2 × M16</span><span class="cr">Max ratio 0.41</span></button>
+        <button type="button" class="conn" data-k="purlin_gable"><img src="img/conn/purlin_gable.jpg?v=2" alt="" width="560" height="405" loading="lazy"><span class="ct">Purlin cleat, gable end</span><span class="cd">Stiffened cleat, 4 × M16</span><span class="cr">Max ratio 0.39</span></button>
+        <button type="button" class="conn" data-k="bracing"><img src="img/conn/bracing.jpg?v=2" alt="" width="560" height="405" loading="lazy"><span class="ct">Roof bracing</span><span class="cd">10 mm gusset, 2 × M20</span><span class="cr">Max ratio 0.10</span></button>
       </div>
       <dialog class="cview" id="cview" aria-labelledby="cv-title">
         <div class="cv-head"><h3 id="cv-title"></h3><button type="button" class="cv-x" id="cv-close" aria-label="Close">×</button></div>
@@ -238,12 +238,25 @@ let T=null,R,S,cam,ctl,cur,idx=0,raf=0;
 async function init(){if(T)return;
   const THREE=await import('three');const {OrbitControls}=await import('three/addons/controls/OrbitControls.js');
   const {GLTFLoader}=await import('three/addons/loaders/GLTFLoader.js');const {MeshoptDecoder}=await import('three/addons/libs/meshopt_decoder.module.js');
-  T={THREE,GLTFLoader,MeshoptDecoder};
-  R=new THREE.WebGLRenderer({antialias:true});R.setPixelRatio(Math.min(devicePixelRatio,2));R.outputColorSpace=THREE.SRGBColorSpace;stage.prepend(R.domElement);
-  S=new THREE.Scene();S.background=new THREE.Color(0xf4f5f6);S.add(new THREE.HemisphereLight(0xffffff,0x8899aa,1.5));
-  const d=new THREE.DirectionalLight(0xffffff,1.7);d.position.set(-3,6,4);S.add(d);const d2=new THREE.DirectionalLight(0xffffff,.6);d2.position.set(4,2,-3);S.add(d2);
-  cam=new THREE.PerspectiveCamera(30,1,0.01,100);ctl=new OrbitControls(cam,R.domElement);ctl.enableDamping=true;ctl.dampingFactor=.08;
+  const {RoomEnvironment}=await import('three/addons/environments/RoomEnvironment.js');
+  R=new THREE.WebGLRenderer({antialias:true});R.setPixelRatio(Math.min(devicePixelRatio,2));R.outputColorSpace=THREE.SRGBColorSpace;
+  R.toneMapping=THREE.ACESFilmicToneMapping;R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFSoftShadowMap;stage.prepend(R.domElement);
+  S=new THREE.Scene();
+  const bg=document.createElement('canvas');bg.width=2;bg.height=256;const bx=bg.getContext('2d'),gr=bx.createLinearGradient(0,0,0,256);gr.addColorStop(0,'#f7f8f9');gr.addColorStop(1,'#dfe3e7');bx.fillStyle=gr;bx.fillRect(0,0,2,256);
+  const bt=new THREE.CanvasTexture(bg);bt.colorSpace=THREE.SRGBColorSpace;S.background=bt;
+  S.environment=new THREE.PMREMGenerator(R).fromScene(new RoomEnvironment(),0.04).texture;
+  const key=new THREE.DirectionalLight(0xffffff,2.2);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.radius=6;key.shadow.bias=-0.0005;S.add(key,key.target);
+  S.add(new THREE.HemisphereLight(0xffffff,0xb0b8c0,0.35));
+  const ground=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.ShadowMaterial({opacity:0.18}));ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;S.add(ground);
+  cam=new THREE.PerspectiveCamera(30,1,0.01,100);ctl=new OrbitControls(cam,R.domElement);ctl.enableDamping=true;ctl.dampingFactor=.08;ctl.autoRotateSpeed=1.2;
+  ctl.addEventListener('start',()=>{ctl.autoRotate=false;});
+  T={THREE,GLTFLoader,MeshoptDecoder,key,ground};
   new ResizeObserver(size).observe(stage);}
+const STY={frame:{c:0xa63a2b,m:.35,r:.45},plate:{c:0xc9552f,m:.35,r:.45},purlin:{c:0xb9c1c7,m:.75,r:.35},cleat:{c:0xc9ced2,m:.7,r:.38},bracing:{c:0x5a6068,m:.6,r:.45},gusset:{c:0x7b828a,m:.6,r:.45},bolt:{c:0x3a3d42,m:.85,r:.3},concrete:{c:0xcfcac0,m:0,r:.95,o:.28},rebar:{c:0x8b5634,m:.5,r:.6}};
+function dress(THREE,root){root.traverse(o=>{if(!o.isMesh)return;let n=o;while(n&&!STY[n.name])n=n.parent;const st=STY[n?n.name:'plate'];
+  o.material=new THREE.MeshStandardMaterial({color:st.c,metalness:st.m,roughness:st.r,envMapIntensity:.9,side:THREE.DoubleSide,transparent:!!st.o,opacity:st.o||1,depthWrite:!st.o,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1});
+  o.castShadow=!st.o;o.receiveShadow=!st.o;
+  if(n&&n.name!=='rebar'&&n.name!=='bolt')o.add(new THREE.LineSegments(new THREE.EdgesGeometry(o.geometry,28),new THREE.LineBasicMaterial({color:st.o?0x9a958c:0x1c2329,transparent:true,opacity:st.o?.5:.55})));});}
 function size(){const w=stage.clientWidth,h=stage.clientHeight;if(!w)return;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();}
 const DIR={knee:[1.2,.5,-1.4],ridge:[.6,.5,-1.4],splice607:[.8,.4,-1.4],splice1607:[.8,.4,-1.4],base_side:[1.2,.8,-1.4],base_central:[1,.8,-1.4],base_gable:[1,.8,1.4],purlin:[1,.9,-1.2],purlin_gable:[1,.9,1.2],bracing:[.8,1.4,-1]};
 async function show(i){idx=(i+ORDER.length)%ORDER.length;const k=ORDER[idx],c=C[k];
@@ -252,9 +265,11 @@ async function show(i){idx=(i+ORDER.length)%ORDER.length;const k=ORDER[idx],c=C[
   msg.textContent='Loading…';msg.hidden=false;
   try{await init();size();const {THREE,GLTFLoader,MeshoptDecoder}=T;
     const g=await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync('model/conn/'+k+'.glb?v=1');
-    if(ORDER[idx]!==k)return;if(cur)S.remove(cur);cur=g.scene;S.add(cur);
+    if(ORDER[idx]!==k)return;if(cur)S.remove(cur);cur=g.scene;dress(THREE,cur);S.add(cur);
     const b=new THREE.Box3().setFromObject(cur),ce=b.getCenter(new THREE.Vector3()),sz=b.getSize(new THREE.Vector3()).length();
-    const v=new THREE.Vector3(...DIR[k]).normalize();cam.position.copy(ce).addScaledVector(v,sz*1.5);ctl.target.copy(ce);ctl.update();
+    const {key,ground}=T;ground.position.set(ce.x,b.min.y-.002,ce.z);ground.scale.set(sz*4,sz*4,1);
+    key.position.set(ce.x-sz*.6,ce.y+sz*1.6,ce.z+sz*.9);key.target.position.copy(ce);const sc=key.shadow.camera;sc.left=sc.bottom=-sz;sc.right=sc.top=sz;sc.near=.01;sc.far=sz*5;sc.updateProjectionMatrix();
+    const v=new THREE.Vector3(...DIR[k]).normalize();cam.position.copy(ce).addScaledVector(v,sz*1.5);ctl.target.copy(ce);ctl.autoRotate=true;ctl.update();
     msg.textContent='Drag to rotate · scroll to zoom';
     if(!raf)(function loop(){raf=requestAnimationFrame(loop);ctl.update();R.render(S,cam);})();
   }catch(e){msg.textContent='The 3D view could not load in this browser.';console.error(e);}}
