@@ -34,6 +34,31 @@
 .sched td{color:var(--ink-2)}
 .sched td:last-child,.sched th:last-child{text-align:right;white-space:nowrap;font-family:"IBM Plex Mono",monospace}
 .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+.hint{font-size:.85rem;color:var(--ink-2);margin-top:18px}
+.conns{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:12px 0 6px}
+.conn{display:flex;flex-direction:column;align-items:stretch;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 8px 10px;cursor:pointer;font:inherit;color:var(--ink);transition:border-color .15s,transform .15s}
+.conn:hover,.conn:focus-visible{border-color:var(--accent);transform:translateY(-2px)}
+.conn img{width:100%;height:auto;border-radius:5px;background:#f4f5f6}
+.conn .ct{font-weight:600;font-size:.9rem;margin-top:8px}
+.conn .cd{font-size:.78rem;color:var(--ink-2)}
+.conn .cr{font:500 .74rem "IBM Plex Mono",monospace;color:var(--blue);margin-top:4px}
+.cview{margin:auto;width:min(1100px,94vw);max-height:92vh;border:1px solid var(--line);border-radius:10px;padding:0;background:var(--card);color:var(--ink)}
+.cview::backdrop{background:rgba(10,16,22,.55)}
+.cv-head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line)}
+.cv-head h3{margin:0;font-size:1.05rem}
+.cv-x{border:0;background:none;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--ink-2)}
+.cv-body{display:grid;grid-template-columns:1.7fr 1fr;gap:0}
+.cv-stage{position:relative;aspect-ratio:4/3;background:#f4f5f6;touch-action:none}
+.cv-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
+.cv-msg{position:absolute;left:12px;bottom:10px;font:500 .76rem "IBM Plex Mono",monospace;color:#4a5866;background:rgba(255,255,255,.85);padding:4px 8px;border-radius:4px}
+.cv-info{padding:16px 18px;font-size:.88rem;overflow:auto}
+.cv-info p{margin:0 0 12px;color:var(--ink-2)}
+.cv-info dl{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin:0}
+.cv-info dt{font-weight:600}
+.cv-info dd{margin:0;color:var(--ink-2)}
+.cv-nav{display:flex;gap:8px;margin-top:16px}
+.cv-nav button{flex:1;font:500 .8rem "IBM Plex Sans",sans-serif;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:7px 10px;border-radius:5px;cursor:pointer}
+@media (max-width:760px){.cv-body{grid-template-columns:1fr}.cv-stage{aspect-ratio:1/1}}
 </style>
 </head>
 <body><nav><div class="wrap">
@@ -96,18 +121,30 @@
       </div>
 
       <h2>Connections</h2>
-      <p>We designed each connection to AISC 360-16 (LRFD) and then checked every one in a component-based finite element model (CBFEM): the plates, welds, bolts and anchors are modelled as they will be built and loaded with the worst forces from all 34 strength load combinations. Bolts and welds are checked to AISC 360-16, plates against a 5% plastic strain limit, and anchor rods, concrete and shear lugs to ACI 318-19.</p>
+      <p>We designed each connection to AISC 360-16 (LRFD) and then checked every one in a detailed finite element model: the plates, welds, bolts and anchors are modelled as they will be built and loaded with the worst forces from all 34 strength load combinations. Bolts and welds are checked to AISC 360-16, plates against a 5% plastic strain limit, and anchor rods, concrete and shear lugs to ACI 318-19.</p>
       <p>The finite element checks led to four changes in the steel model:</p>
       <ul><li>The shear lugs at the side columns now run across the frame, so they bear against the concrete in the direction of the 84 kN frame shear.</li><li>The splice end plates stand 10 mm proud of the flush flange, so the sloped flange is fully cut and welded to the plate.</li><li>The purlin cleats on the two gable frames have 4 bolts instead of 2. Two columns of bolts let the joint resist rotation on its own.</li><li>The pedestal ties continue down through the footing to just above the bottom mesh, holding the starter bars in place.</li></ul>
-      <div class="gallery">
-        <figure class="figure"><img src="img/peb_conn_knee.jpg" alt="Eave knee: rafter stub welded to the column with diagonal stiffeners, and a bolted end-plate splice" width="1400" height="875" loading="lazy"><figcaption>Eave knee: 25 mm rafter end plate at the column face with 12 × M24 A325 bolts, knee stiffeners and a diagonal stiffener pair in the panel. Bolts 0.80, welds 0.61, no plastic strain.</figcaption></figure>
-        <figure class="figure"><img src="img/peb_conn_ridge.jpg" alt="Ridge joint over the central column with bolted end plates" width="1400" height="875" loading="lazy"><figcaption>Ridge over the central column: 32 mm extended end plates with 10 × M30 A325 bolts, and sloped 25 mm caps bolted to the rafters with 2 × M24 each side. Bolts 0.68, welds 0.21.</figcaption></figure>
-        <figure class="figure"><img src="img/peb_conn_splice.jpg" alt="Rafter splice with bolted end plates" width="1400" height="875" loading="lazy"><figcaption>Rafter splice at 6.07 m: 25 mm end plates extended on the tension side, 8 × M24 A325 bolts, full-strength flange welds and 10 mm web fillets. Bolts 0.35, welds 0.36.</figcaption></figure>
-        <figure class="figure"><img src="img/peb_conn_base.jpg" alt="Pinned column base with base plate and anchor bolts on a concrete pedestal, with the pedestal and footing reinforcement shown" width="1400" height="875" loading="lazy"><figcaption>Pinned side-column base: 20 mm plate, 4 × 25 mm ASTM F1554 Gr 36 anchor rods cast 450 mm into the pedestal, and a 200 × 150 × 30 shear lug across the frame. The pedestal ties continue into the footing. Ratio 0.75 (lug weld); anchor rods 0.27.</figcaption></figure>
-        <figure class="figure"><img src="img/peb_conn_purlin.jpg" alt="Purlin seated on a welded cleat on the rafter" width="1400" height="875" loading="lazy"><figcaption>Purlin cleat on an interior frame: stiffened 10 mm cleat welded to the rafter, 2 × M16 A325 at each purlin end. Bolts 0.41, welds 0.28.</figcaption></figure>
-        <figure class="figure"><img src="img/peb_conn_purlin_gable.jpg" alt="Gable-end purlin bolted to a stiffened cleat with four bolts" width="1400" height="875" loading="lazy"><figcaption>Purlin cleat on a gable frame: the end purlin runs across the whole cleat with 4 × M16 A325. Bolts 0.18, welds 0.39, including the down-slope and strut forces.</figcaption></figure>
-        <figure class="figure"><img src="img/peb_model_bracing.jpg" alt="Roof bracing bay with angle bracing bolted to gusset plates" width="1400" height="875" loading="lazy"><figcaption>Roof bracing: angles bolted to 10 mm gussets with 2 × M20 at each end. Ratio 0.10.</figcaption></figure>
+      <p class="hint">Select a connection to open it in 3D. Drag to rotate, scroll or pinch to zoom.</p>
+      <div class="conns" id="conns">
+        <button type="button" class="conn" data-k="knee"><img src="img/conn/knee.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Eave knee</span><span class="cd">Bolted end plate, 12 × M24</span><span class="cr">Max ratio 0.80</span></button>
+        <button type="button" class="conn" data-k="ridge"><img src="img/conn/ridge.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Ridge and column cap</span><span class="cd">Extended end plates, 10 × M30</span><span class="cr">Max ratio 0.68</span></button>
+        <button type="button" class="conn" data-k="splice607"><img src="img/conn/splice607.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Rafter splice at 6.07 m</span><span class="cd">Extended end plates, 8 × M24</span><span class="cr">Max ratio 0.36</span></button>
+        <button type="button" class="conn" data-k="splice1607"><img src="img/conn/splice1607.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Rafter splice at 16.07 m</span><span class="cd">Extended end plates, 8 × M24</span><span class="cr">Max ratio 0.24</span></button>
+        <button type="button" class="conn" data-k="base_side"><img src="img/conn/base_side.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Side column base</span><span class="cd">Shear lug across the frame</span><span class="cr">Max ratio 0.75</span></button>
+        <button type="button" class="conn" data-k="base_central"><img src="img/conn/base_central.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Central column base</span><span class="cd">4 anchor rods, no uplift</span><span class="cr">Max ratio 0.10</span></button>
+        <button type="button" class="conn" data-k="base_gable"><img src="img/conn/base_gable.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Gable column base</span><span class="cd">Shear on the anchor rods</span><span class="cr">Max ratio 0.65</span></button>
+        <button type="button" class="conn" data-k="purlin"><img src="img/conn/purlin.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Purlin cleat, interior</span><span class="cd">Stiffened cleat, 2 × M16</span><span class="cr">Max ratio 0.41</span></button>
+        <button type="button" class="conn" data-k="purlin_gable"><img src="img/conn/purlin_gable.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Purlin cleat, gable end</span><span class="cd">Stiffened cleat, 4 × M16</span><span class="cr">Max ratio 0.39</span></button>
+        <button type="button" class="conn" data-k="bracing"><img src="img/conn/bracing.jpg" alt="" width="560" height="405" loading="lazy"><span class="ct">Roof bracing</span><span class="cd">10 mm gusset, 2 × M20</span><span class="cr">Max ratio 0.10</span></button>
       </div>
+      <dialog class="cview" id="cview" aria-labelledby="cv-title">
+        <div class="cv-head"><h3 id="cv-title"></h3><button type="button" class="cv-x" id="cv-close" aria-label="Close">×</button></div>
+        <div class="cv-body">
+          <div class="cv-stage" id="cv-stage"><span class="cv-msg" id="cv-msg">Loading…</span></div>
+          <div class="cv-info"><p id="cv-desc"></p><dl id="cv-data"></dl>
+            <div class="cv-nav"><button type="button" id="cv-prev">← Previous</button><button type="button" id="cv-next">Next →</button></div></div>
+        </div>
+      </dialog>
 
       <h2>Connection schedule</h2>
       <div class="tablewrap"><table class="sched">
@@ -182,6 +219,50 @@ go.addEventListener('click',async()=>{
     (function loop(){requestAnimationFrame(loop);ctl.update();R.render(S,cam);})();
   }catch(e){msg.textContent='The 3D model could not load in this browser. The images below show the model.';console.error(e);}
 });
+</script>
+<script type="module">
+const C={
+knee:{t:"Eave knee",d:"The rafter is bolted to the column face through a 25 mm end plate. Knee stiffeners and a diagonal stiffener pair carry the panel shear.",r:[["Bolts","12 × M24 A325"],["End plate","25 mm"],["Moment","410 kNm"],["Max ratio","0.80"]]},
+ridge:{t:"Ridge and column cap",d:"The two rafters meet over the central column with extended end plates. Sloped caps bolt the rafters down to the column.",r:[["Bolts","10 × M30 A325"],["End plates","32 mm"],["Caps","25 mm, 2 × M24 each side"],["Moment","529 kNm"],["Max ratio","0.68"]]},
+splice607:{t:"Rafter splice at 6.07 m",d:"A shop splice where the rafter changes from tapered to constant depth. The end plates stand 10 mm proud of the top flange so the sloped flange is fully welded.",r:[["Bolts","8 × M24 A325"],["End plates","25 mm, extended"],["Moment","126 kNm"],["Max ratio","0.36"]]},
+splice1607:{t:"Rafter splice at 16.07 m",d:"The second rafter splice, nearer the ridge, with the same bolt layout.",r:[["Bolts","8 × M24 A325"],["End plates","20 mm, extended"],["Moment","70 kNm"],["Max ratio","0.24"]]},
+base_side:{t:"Side column base",d:"A pinned base on a reinforced pedestal. The shear lug under the plate runs across the frame to take the 84 kN frame shear into the concrete.",r:[["Base plate","20 mm"],["Anchor rods","4 × 25 mm F1554 Gr 36"],["Shear lug","200 × 150 × 30"],["Forces","H 84 kN, N 144 kN, uplift 19 kN"],["Max ratio","0.75"]]},
+base_central:{t:"Central column base",d:"The central column only ever pushes down, so a plain pinned base with four anchor rods is enough.",r:[["Base plate","500 × 300 × 20"],["Anchor rods","4 × 25 mm F1554 Gr 36"],["Force","N 284 kN, no uplift"],["Max ratio","0.10"]]},
+base_gable:{t:"Gable column base",d:"The gable wind columns carry small forces. Shear goes through the anchor rods into the pedestal.",r:[["Base plate","300 × 500 × 20"],["Anchor rods","4 × 19 mm F1554 Gr 36"],["Forces","H 18 kN, uplift 4 kN"],["Max ratio","0.65"]]},
+purlin:{t:"Purlin cleat, interior frame",d:"Two purlins lap over a stiffened cleat welded to the rafter top flange.",r:[["Bolts","2 × M16 A325 each end"],["Cleat","10 mm, 8 mm stiffener"],["Force per end","31 kN down, 19 kN up"],["Max ratio","0.41"]]},
+purlin_gable:{t:"Purlin cleat, gable end",d:"At the gable frames the end purlin runs across the whole cleat with four bolts, so the joint holds its shape on its own and also carries the strut force from the end wall.",r:[["Bolts","4 × M16 A325"],["Cleat","10 mm, 8 mm stiffener"],["Forces","30 kN, strut 15 kN"],["Max ratio","0.39"]]},
+bracing:{t:"Roof bracing",d:"Angle bracing bolted to gussets on the rafter, carrying wind along the building to the braced bays.",r:[["Bolts","2 × M20 A325 each end"],["Gusset","10 mm"],["Force","18 kN"],["Max ratio","0.10"]]}};
+const ORDER=Object.keys(C);
+const dlg=document.getElementById('cview'),stage=document.getElementById('cv-stage'),msg=document.getElementById('cv-msg');
+let T=null,R,S,cam,ctl,cur,idx=0,raf=0;
+async function init(){if(T)return;
+  const THREE=await import('three');const {OrbitControls}=await import('three/addons/controls/OrbitControls.js');
+  const {GLTFLoader}=await import('three/addons/loaders/GLTFLoader.js');const {MeshoptDecoder}=await import('three/addons/libs/meshopt_decoder.module.js');
+  T={THREE,GLTFLoader,MeshoptDecoder};
+  R=new THREE.WebGLRenderer({antialias:true});R.setPixelRatio(Math.min(devicePixelRatio,2));R.outputColorSpace=THREE.SRGBColorSpace;stage.prepend(R.domElement);
+  S=new THREE.Scene();S.background=new THREE.Color(0xf4f5f6);S.add(new THREE.HemisphereLight(0xffffff,0x8899aa,1.5));
+  const d=new THREE.DirectionalLight(0xffffff,1.7);d.position.set(-3,6,4);S.add(d);const d2=new THREE.DirectionalLight(0xffffff,.6);d2.position.set(4,2,-3);S.add(d2);
+  cam=new THREE.PerspectiveCamera(30,1,0.01,100);ctl=new OrbitControls(cam,R.domElement);ctl.enableDamping=true;ctl.dampingFactor=.08;
+  new ResizeObserver(size).observe(stage);}
+function size(){const w=stage.clientWidth,h=stage.clientHeight;if(!w)return;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();}
+const DIR={knee:[1.2,.5,-1.4],ridge:[.6,.5,-1.4],splice607:[.8,.4,-1.4],splice1607:[.8,.4,-1.4],base_side:[1.2,.8,-1.4],base_central:[1,.8,-1.4],base_gable:[1,.8,1.4],purlin:[1,.9,-1.2],purlin_gable:[1,.9,1.2],bracing:[.8,1.4,-1]};
+async function show(i){idx=(i+ORDER.length)%ORDER.length;const k=ORDER[idx],c=C[k];
+  document.getElementById('cv-title').textContent=c.t;document.getElementById('cv-desc').textContent=c.d;
+  document.getElementById('cv-data').innerHTML=c.r.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join('');
+  msg.textContent='Loading…';msg.hidden=false;
+  try{await init();size();const {THREE,GLTFLoader,MeshoptDecoder}=T;
+    const g=await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync('model/conn/'+k+'.glb?v=1');
+    if(ORDER[idx]!==k)return;if(cur)S.remove(cur);cur=g.scene;S.add(cur);
+    const b=new THREE.Box3().setFromObject(cur),ce=b.getCenter(new THREE.Vector3()),sz=b.getSize(new THREE.Vector3()).length();
+    const v=new THREE.Vector3(...DIR[k]).normalize();cam.position.copy(ce).addScaledVector(v,sz*1.5);ctl.target.copy(ce);ctl.update();
+    msg.textContent='Drag to rotate · scroll to zoom';
+    if(!raf)(function loop(){raf=requestAnimationFrame(loop);ctl.update();R.render(S,cam);})();
+  }catch(e){msg.textContent='The 3D view could not load in this browser.';console.error(e);}}
+document.querySelectorAll('#conns .conn').forEach(b=>b.addEventListener('click',()=>{dlg.showModal();show(ORDER.indexOf(b.dataset.k));}));
+document.getElementById('cv-close').onclick=()=>dlg.close();
+document.getElementById('cv-prev').onclick=()=>show(idx-1);document.getElementById('cv-next').onclick=()=>show(idx+1);
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close();});
+dlg.addEventListener('close',()=>{cancelAnimationFrame(raf);raf=0;});
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5cf16966bf16493d90ac74882696c82b"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
